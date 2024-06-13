@@ -1,0 +1,9 @@
+{% block content %}
+  <h1>Add User to {{ chat.name }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <button type="submit">Add</button>
+  </form>
+{% endblock %}

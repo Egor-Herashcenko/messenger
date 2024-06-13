@@ -1,0 +1,20 @@
+{% block content %}
+  <h1>{{ chat.name }}</h1>
+  <ul>
+    {% for message in messages %}
+      <li>
+        <strong>{{ message.author }}:</strong> {{ message.content }}
+        {% if message.author == user %}
+          <a href="{% url 'edit_message' message.id %}">Edit</a>
+          <a href="{% url 'delete_message' message.id %}">Delete</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+  </form>
+  <a href="{% url 'add_user_to_chat' chat.id %}">Add user</a>
+{% endblock %}
